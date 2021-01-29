@@ -25,11 +25,11 @@ const routes: Routes = [
     ProductCategoryMenuComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
-    CommonModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule,
+    CommonModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
