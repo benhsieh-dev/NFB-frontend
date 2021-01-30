@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './product-list-grid.component.html',
   styleUrls: ['./product-list.component.css']
 })
+
 export class ProductListComponent implements OnInit {
 
   products: Product[]; 
@@ -28,6 +29,8 @@ export class ProductListComponent implements OnInit {
   listProducts() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id'); 
 
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword'); 
+
     if (hasCategoryId) {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id');  
     } else {
@@ -39,6 +42,12 @@ export class ProductListComponent implements OnInit {
         this.products = data; 
       }
     ); 
+
+    this.productService.searchProducts(theKeyword).subscribe(
+      data => {
+        this.products = data; 
+      } 
+    )
   }
 
 }
