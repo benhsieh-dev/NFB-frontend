@@ -63,5 +63,8 @@
     </div>
 </div>
 
+<div *ngFor="let tempProduct of products" class="col-md-3">
+    <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to cart</button>
+</div>
 
 
