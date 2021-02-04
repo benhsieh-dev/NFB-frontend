@@ -15,6 +15,7 @@ export class CartService {
   constructor() { }
 
   addToCart(theCartItem: CartItem) {
+
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined; 
     if (this.cartItems.length > 0) {
@@ -25,18 +26,15 @@ export class CartService {
         }
       }
 
-      alreadyExistsInCart = (existingCartItem != undefined)
+      alreadyExistsInCart = existingCartItem != undefined;
+    }
 
       if(alreadyExistsInCart) {
         existingCartItem.quantity++;
       } else {
         this.cartItems.push(theCartItem); 
       }
-
       this.computeCartTotal(); 
-
-    }
-
   } 
 
   computeCartTotal() {
