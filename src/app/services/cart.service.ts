@@ -32,8 +32,11 @@ export class CartService {
       } else {
         this.cartItems.push(theCartItem); 
       }
+
       this.computeCartTotal(); 
+
     }
+
   } 
 
   computeCartTotal() {
@@ -57,6 +60,6 @@ export class CartService {
       unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`); 
     }
     console.log(`totalPrice=${totalPriceValue.toFixed(2)}, totalQuantity=${totalQuantityValue}`);
-    console.log('----'); 
+    console.log('----');  
   }
 }
