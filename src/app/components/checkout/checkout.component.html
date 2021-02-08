@@ -85,6 +85,8 @@
         
             </div>
 
+            <!-- Billing address autofill feature  -->
+
             <div class="input-space">
                 <label class="au-checkbox">
                     <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
@@ -144,6 +146,74 @@
                     </div>
                 </div>
             
+            </div>
+
+            <!-- Credit card  -->
+
+            <div formGroupName="creditCard" class="form-area">
+                <h3>Credit Card</h3>
+                <div class="row">
+                    <div class="col-md-2"><label>Card Type</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <select formControlName="cardType">
+                                <option>American Express</option>
+                                <option>Discover</option>
+                                <option>Mastercard</option>
+                                <option>Visa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><label>Name on Card</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <input formControlName="nameOnCard" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-2"><label>Card Number</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <input formControlName="cardNumber" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-2"><label>Security Code</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <Input formControlName="securityCode">              
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-2"><label>Expiration Month</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <select formControlName="expirationMonth" type="text">
+                                <option>November</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"><label>Expiration Year</label></div>
+                    <div class="col-md-9">
+                        <div class="input-space">
+                            <Select formControlName="expirationYear" type="text">
+                                <option>2021</option>
+                            </Select>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
         
             <div class="text-center">
