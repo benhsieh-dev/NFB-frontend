@@ -20,20 +20,7 @@ export class CheckoutComponent implements OnInit {
       private nfbFormService: NFBFormService) {}
 
   ngOnInit(): void {
-    const startMonth: number = new Date().getMonth() + 1;
-    console.log(startMonth + 1);
-    this.nfbFormService.getCreditCardMonths(startMonth).subscribe(
-      data => {
-        console.log("Received credit card months: " + JSON.stringify(data));
-        this.creditCardMonths = data; 
-      }
-    );
-
-    this.nfbFormService.getCreditCardYears().subscribe((data) => {
-      console.log('Received credit card years: ' + JSON.stringify(data));
-      this.creditCardYears = data;
-    });
-
+  
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],
@@ -66,6 +53,19 @@ export class CheckoutComponent implements OnInit {
         expirationYear: [''],
       }),
     });
+
+      const startMonth: number = new Date().getMonth() + 1;
+      console.log(startMonth + 1);
+      this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
+        console.log('Received credit card months: ' + JSON.stringify(data));
+        this.creditCardMonths = data;
+      });
+
+      this.nfbFormService.getCreditCardYears().subscribe((data) => {
+        console.log('Received credit card years: ' + JSON.stringify(data));
+        this.creditCardYears = data;
+      });
+      
   }
 
   onSubmit() {
