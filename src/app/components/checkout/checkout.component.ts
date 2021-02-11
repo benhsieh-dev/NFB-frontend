@@ -11,16 +11,17 @@ export class CheckoutComponent implements OnInit {
   checkoutFormGroup: FormGroup;
 
   totalPrice: number = 0;
-  totalQuantity: number = 0; 
+  totalQuantity: number = 0;
 
-  creditCardYears: number[] = []; 
-  creditCardMonths: number[] = []; 
+  creditCardYears: number[] = [];
+  creditCardMonths: number[] = [];
 
-  constructor(private formBuilder: FormBuilder,
-      private nfbFormService: NFBFormService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private nfbFormService: NFBFormService
+  ) {}
 
   ngOnInit(): void {
-  
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],
@@ -54,18 +55,17 @@ export class CheckoutComponent implements OnInit {
       }),
     });
 
-      const startMonth: number = new Date().getMonth() + 1;
-      console.log(startMonth + 1);
-      this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
-        console.log('Received credit card months: ' + JSON.stringify(data));
-        this.creditCardMonths = data;
-      });
+    const startMonth: number = new Date().getMonth() + 1;
+    console.log(startMonth + 1);
+    this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
+      console.log('Received credit card months: ' + JSON.stringify(data));
+      this.creditCardMonths = data;
+    });
 
-      this.nfbFormService.getCreditCardYears().subscribe((data) => {
-        console.log('Received credit card years: ' + JSON.stringify(data));
-        this.creditCardYears = data;
-      });
-      
+    this.nfbFormService.getCreditCardYears().subscribe((data) => {
+      console.log('Received credit card years: ' + JSON.stringify(data));
+      this.creditCardYears = data;
+    });
   }
 
   onSubmit() {
@@ -80,11 +80,33 @@ export class CheckoutComponent implements OnInit {
 
   copyShippingAddressToBillingAddress(event) {
     if (event.target.checked) {
-      this.checkoutFormGroup.controls.billingAddress
-      .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
+      this.checkoutFormGroup.controls.billingAddress.setValue(
+        this.checkoutFormGroup.controls.shippingAddress.value
+      );
     } else {
-      this.checkoutFormGroup.controls.billingAddress.reset(); 
+      this.checkoutFormGroup.controls.billingAddress.reset();
     }
   }
 
+  handleMonthsAndYears() {
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard'); 
+    const currentYear: number = new Date().getFullYear();
+    const selectedYear: number = Number(creditCardFormGroup.value.expirationYear);
+
+    let startMonth: number;
+
+    if (currentYear === selectedYear) {
+      startMonth = new Date().getMonth() + 1;
+    } else {
+      startMonth = 1; 
+    }
+
+    this.nfbFormService.getCreditCardMonths(startMonth).subscribe(
+      data => {
+        console.log("Retrieved credit card months: " + JSON.stringify(data));
+        this.creditCardMonths = data;
+      }
+    )
+ 
+  }
 }
