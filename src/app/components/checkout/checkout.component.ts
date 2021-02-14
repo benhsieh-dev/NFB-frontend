@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Country } from 'src/app/common/country';
+import { State } from 'src/app/common/state';
 import { NFBFormService } from 'src/app/services/nfbform.service';
 
 @Component({
@@ -10,11 +12,17 @@ import { NFBFormService } from 'src/app/services/nfbform.service';
 export class CheckoutComponent implements OnInit {
   checkoutFormGroup: FormGroup;
 
+  shippingAddessStates: State[] = [];
+  billingAddressStates: State[] = [];
+
   totalPrice: number = 0;
   totalQuantity: number = 0;
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
+
+  countries: Country[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,6 +30,13 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.nfbFormService.getCountries().subscribe(
+      data => {
+        console.log("Retrieved countries: " + JSON.stringify(data));
+        this.countries = data; 
+      }
+    )
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],
@@ -107,6 +122,21 @@ export class CheckoutComponent implements OnInit {
         this.creditCardMonths = data;
       }
     )
- 
+  }
+
+  getStates(formGroupName: string) {
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+    const countryCode = formGroup.value.country.code; 
+
+    this.nfbFormService.getStates(countryCode).subscribe(
+      data => {
+        if (formGroupName === 'shippingAddress') {
+          this.shippingAddessStates = data;
+        } else {
+          this.billingAddressStates = data; 
+        }
+        formGroup.get('state').setValue(data[0]); 
+      }
+    )
   }
 }
