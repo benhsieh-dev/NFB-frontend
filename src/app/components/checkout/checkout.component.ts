@@ -84,12 +84,12 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log('Handling the submit button');
-    // console.log(this.checkoutFormGroup.get('customer').value);
-    // console.log("The email addres is " + this.checkoutFormGroup.get('customer').value.email);
+    console.log(this.checkoutFormGroup.get('customer').value);
+    console.log("The email addres is " + this.checkoutFormGroup.get('customer').value.email);
 
-    console.log(
-      'The country is ' + this.checkoutFormGroup.get('country').value
-    );
+    console.log('The shipping address country is ' + this.checkoutFormGroup.get('shippingAddress').value.country.name);
+    console.log('The shipping address state is ' + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+
   }
 
   copyShippingAddressToBillingAddress(event) {
