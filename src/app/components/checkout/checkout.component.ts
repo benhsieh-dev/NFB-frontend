@@ -8,6 +8,7 @@ import {
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { NFBFormService } from 'src/app/services/nfbform.service';
+import { NFBValidators } from 'src/app/validators/nfb-validators'; 
 
 @Component({
   selector: 'app-checkout',
@@ -43,6 +44,7 @@ export class CheckoutComponent implements OnInit {
         firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          NFBValidators.notOnlyWhitespace
         ]),
         lastName: new FormControl('', [
           Validators.required,
