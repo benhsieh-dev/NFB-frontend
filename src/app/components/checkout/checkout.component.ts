@@ -49,6 +49,7 @@ export class CheckoutComponent implements OnInit {
         lastName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
+          NFBValidators.notOnlyWhitespace
         ]),
         email: new FormControl('', [
           Validators.required,
