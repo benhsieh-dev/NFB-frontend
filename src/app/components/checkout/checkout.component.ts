@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { NFBFormService } from 'src/app/services/nfbform.service';
@@ -29,21 +34,26 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.nfbFormService.getCountries().subscribe(
-      data => {
-        console.log("Retrieved countries: " + JSON.stringify(data));
-        this.countries = data; 
-      }
-    )
+    this.nfbFormService.getCountries().subscribe((data) => {
+      console.log('Retrieved countries: ' + JSON.stringify(data));
+      this.countries = data;
+    });
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        email: new FormControl('',[
-          Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
-        }),
-     
+        firstName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        lastName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ]),
+      }),
+
       shippingAddress: this.formBuilder.group({
         country: [''],
         street: [''],
@@ -86,15 +96,34 @@ export class CheckoutComponent implements OnInit {
   onSubmit() {
     console.log('Handling the submit button');
     console.log(this.checkoutFormGroup.get('customer').value);
-    console.log("The email addres is " + this.checkoutFormGroup.get('customer').value.email);
+    console.log(
+      'The email addres is ' +
+        this.checkoutFormGroup.get('customer').value.email
+    );
 
-    console.log('The shipping address country is ' + this.checkoutFormGroup.get('shippingAddress').value.country.name);
-    console.log('The shipping address state is ' + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+    console.log(
+      'The shipping address country is ' +
+        this.checkoutFormGroup.get('shippingAddress').value.country.name
+    );
+    console.log(
+      'The shipping address state is ' +
+        this.checkoutFormGroup.get('shippingAddress').value.state.name
+    );
 
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
     }
-    console.log("CheckoutFormGroup is valid: " + this.checkoutFormGroup.valid); 
+    console.log('CheckoutFormGroup is valid: ' + this.checkoutFormGroup.valid);
+  }
+
+  get firstName() {
+    return this.checkoutFormGroup.get('customer.firstName');
+  }
+  get lastName() {
+    return this.checkoutFormGroup.get('customer.lastName');
+  }
+  get email() {
+    return this.checkoutFormGroup.get('customer.email');
   }
 
   copyShippingAddressToBillingAddress(event) {
@@ -102,65 +131,49 @@ export class CheckoutComponent implements OnInit {
       this.checkoutFormGroup.controls.billingAddress.setValue(
         this.checkoutFormGroup.controls.shippingAddress.value
       );
-      this.billingAddressStates = this.shippingAddressStates; 
+      this.billingAddressStates = this.shippingAddressStates;
     } else {
       this.checkoutFormGroup.controls.billingAddress.reset();
-      this.billingAddressStates = []; 
+      this.billingAddressStates = [];
     }
   }
 
   handleMonthsAndYears() {
-    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard'); 
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
     const currentYear: number = new Date().getFullYear();
-    const selectedYear: number = Number(creditCardFormGroup.value.expirationYear);
+    const selectedYear: number = Number(
+      creditCardFormGroup.value.expirationYear
+    );
 
     let startMonth: number;
 
     if (currentYear === selectedYear) {
       startMonth = new Date().getMonth() + 1;
     } else {
-      startMonth = 1; 
+      startMonth = 1;
     }
 
-    this.nfbFormService.getCreditCardMonths(startMonth).subscribe(
-      data => {
-        console.log("Retrieved credit card months: " + JSON.stringify(data));
-        this.creditCardMonths = data;
-      }
-    )
+    this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
+      console.log('Retrieved credit card months: ' + JSON.stringify(data));
+      this.creditCardMonths = data;
+    });
   }
 
   getStates(formGroupName: string) {
     const formGroup = this.checkoutFormGroup.get(formGroupName);
-    const countryCode = formGroup.value.country.code; 
+    const countryCode = formGroup.value.country.code;
     const countryName = formGroup.value.country.name;
 
-    console.log(`${formGroupName} country code: ${countryCode}`)
-    console.log(`${formGroupName} country name: ${countryName}`)
+    console.log(`${formGroupName} country code: ${countryCode}`);
+    console.log(`${formGroupName} country name: ${countryName}`);
 
-    this.nfbFormService.getStates(countryCode).subscribe(
-      data => {
-        if (formGroupName === 'shippingAddress') {
-          this.shippingAddressStates = data;
-        } else {
-          this.billingAddressStates = data; 
-        }
-        formGroup.get('state').setValue(data[0]); 
+    this.nfbFormService.getStates(countryCode).subscribe((data) => {
+      if (formGroupName === 'shippingAddress') {
+        this.shippingAddressStates = data;
+      } else {
+        this.billingAddressStates = data;
       }
-    )
+      formGroup.get('state').setValue(data[0]);
+    });
   }
-
-
-  get firstName() {
-    return this.checkoutFormGroup.get('customer.firstName');
-  }
-
-  get lastName() {
-    return this.checkoutFormGroup.get('customer.lastName');
-  }
-
-  get email() {
-    return this.checkoutFormGroup.get('customer.email');
-  }
-
 }
