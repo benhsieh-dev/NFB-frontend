@@ -44,12 +44,12 @@ export class CheckoutComponent implements OnInit {
         firstName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
-          NFBValidators.notOnlyWhitespace
+          NFBValidators.notOnlyWhitespace,
         ]),
         lastName: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
-          NFBValidators.notOnlyWhitespace
+          NFBValidators.notOnlyWhitespace,
         ]),
         email: new FormControl('', [
           Validators.required,
@@ -58,11 +58,23 @@ export class CheckoutComponent implements OnInit {
       }),
 
       shippingAddress: this.formBuilder.group({
-        country: [''],
-        street: [''],
-        city: [''],
-        state: [''],
-        zipCode: [''],
+        country: new FormControl('', [Validators.required]),
+        street: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          NFBValidators.notOnlyWhitespace
+        ]),
+        city: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          NFBValidators.notOnlyWhitespace
+        ]),
+        state: new FormControl('', [Validators.required]),
+        zipCode: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          NFBValidators.notOnlyWhitespace
+        ]),
       }),
 
       billingAddress: this.formBuilder.group({
@@ -119,15 +131,14 @@ export class CheckoutComponent implements OnInit {
     console.log('CheckoutFormGroup is valid: ' + this.checkoutFormGroup.valid);
   }
 
-  get firstName() {
-    return this.checkoutFormGroup.get('customer.firstName');
-  }
-  get lastName() {
-    return this.checkoutFormGroup.get('customer.lastName');
-  }
-  get email() {
-    return this.checkoutFormGroup.get('customer.email');
-  }
+  get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
+  get lastName() { return this.checkoutFormGroup.get('customer.lastName'); }
+  get email() { return this.checkoutFormGroup.get('customer.email'); }
+
+  get shippingAddressCountry() { return this.checkoutFormGroup.get('shippingAddress.country'); }
+  get shippingAddressStreet() { return this.checkoutFormGroup.get('shippingAddress.street'); }
+  get shippingAddressCity() { return this.checkoutFormGroup.get('shippingAddress.city'); }
+  get shippingAddressZipCode() { return this.checkoutFormGroup.get('shippingAddress.zipCode'); }
 
   copyShippingAddressToBillingAddress(event) {
     if (event.target.checked) {
