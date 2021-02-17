@@ -138,6 +138,7 @@ export class CheckoutComponent implements OnInit {
   get shippingAddressCountry() { return this.checkoutFormGroup.get('shippingAddress.country'); }
   get shippingAddressStreet() { return this.checkoutFormGroup.get('shippingAddress.street'); }
   get shippingAddressCity() { return this.checkoutFormGroup.get('shippingAddress.city'); }
+  get shippingAddressState() { return this.checkoutFormGroup.get('shippingAddress.state'); }
   get shippingAddressZipCode() { return this.checkoutFormGroup.get('shippingAddress.zipCode'); }
 
   copyShippingAddressToBillingAddress(event) {
