@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { NFBFormService } from 'src/app/services/nfbform.service';
 import { NFBValidators } from 'src/app/validators/nfb-validators'; 
 
@@ -31,10 +32,13 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private nfbFormService: NFBFormService
+    private nfbFormService: NFBFormService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.reviewCartDetails();
+
     this.nfbFormService.getCountries().subscribe((data) => {
       console.log('Retrieved countries: ' + JSON.stringify(data));
       this.countries = data;
@@ -130,6 +134,15 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  reviewCartDetails() {
+    this.cartService.totalQuantity.subscribe(
+      (totalQuantity) => (this.totalQuantity = totalQuantity)
+    );
+    this.cartService.totalPrice.subscribe(
+      (totalPrice) => (this.totalPrice = totalPrice)
+    );
+  }
+
   onSubmit() {
     console.log('Handling the submit button');
     console.log(this.checkoutFormGroup.get('customer').value);
@@ -153,6 +166,7 @@ export class CheckoutComponent implements OnInit {
     console.log('CheckoutFormGroup is valid: ' + this.checkoutFormGroup.valid);
   }
 
+  
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');
   }
