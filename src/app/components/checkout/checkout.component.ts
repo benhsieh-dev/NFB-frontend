@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country';
+import { Order } from 'src/app/common/order';
+import { OrderItem } from 'src/app/common/order-item';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
 import { CheckoutService } from 'src/app/services/checkout.service';
@@ -155,6 +157,13 @@ export class CheckoutComponent implements OnInit {
       return; 
     }
   
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity; 
+
+    const cartItems = this.cartService.cartItems; 
+
+    let orderItems: OrderItem[] = cartItems.map(cartItem => new OrderItem(cartItem)); 
   }
 
   get firstName() {

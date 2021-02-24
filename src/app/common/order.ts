@@ -1,4 +1,4 @@
 export class Order {
-    totalQuantity: string; 
-    totalPrice: string; 
+    totalQuantity: number; 
+    totalPrice: number; 
 }
