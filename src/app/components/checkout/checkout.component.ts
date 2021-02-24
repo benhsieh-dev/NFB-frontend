@@ -5,9 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { NFBFormService } from 'src/app/services/nfbform.service';
 import { NFBValidators } from 'src/app/validators/nfb-validators'; 
 
@@ -33,7 +35,9 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private nfbFormService: NFBFormService,
-    private cartService: CartService
+    private cartService: CartService,
+    private checkoutService: CheckoutService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -145,28 +149,14 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log('Handling the submit button');
-    console.log(this.checkoutFormGroup.get('customer').value);
-    console.log(
-      'The email addres is ' +
-        this.checkoutFormGroup.get('customer').value.email
-    );
-
-    console.log(
-      'The shipping address country is ' +
-        this.checkoutFormGroup.get('shippingAddress').value.country.name
-    );
-    console.log(
-      'The shipping address state is ' +
-        this.checkoutFormGroup.get('shippingAddress').value.state.name
-    );
-
+   
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      return; 
     }
-    console.log('CheckoutFormGroup is valid: ' + this.checkoutFormGroup.valid);
+  
   }
 
-  
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');
   }
