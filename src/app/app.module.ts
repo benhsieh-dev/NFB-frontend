@@ -7,7 +7,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { HttpClientModule } from '@angular/common/http'; 
 import { ProductService } from './services/product.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -23,15 +23,15 @@ import myAppConfig from './config/my-app-config';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (injector) => {
-    // const router = injector.get(Router);
+    const router = injector.get(Router);
 
-    // router.navigate(['/login']);
+    router.navigate(['/login']);
   }
 }, myAppConfig.oidc);
 
 const routes: Routes = [
   {path: 'login/callback', component: OktaCallbackComponent},
-  // {path: 'login, component: LoginComponent'},
+  {path: 'login', component: LoginComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent}, 
   {path: 'products/:id', component: ProductDetailsComponent}, 
