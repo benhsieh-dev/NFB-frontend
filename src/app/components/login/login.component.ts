@@ -7,41 +7,41 @@ import myAppConfig from '../../config/my-app-config';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  oktaSignIn: any;
+  oktaSignin: any; // OktaSignIn error
 
   constructor(private oktaAuthService: OktaAuthService) {
-
-    this.oktaSignIn = new OktaSignIn({
+    this.oktaSignin = new OktaSignIn({
       logo: 'assets/images/logo.png',
-      baseUrl: myAppConfig.oidc.issuer.split('/oath2')[0],
+      baseUrl: myAppConfig.oidc.issuer.split('/oauth2')[0],
       clientId: myAppConfig.oidc.clientId,
       redirectUri: myAppConfig.oidc.redirectUri,
       authParams: {
         pkce: true,
         issuer: myAppConfig.oidc.issuer,
-        scopes: myAppConfig.oidc.scopes
-      }
-    })
-   }
-
-  ngOnInit() {
-    this.oktaSignIn.remove();
-
-    this.oktaSignIn.renderEl({
-      el: '#okta-sign-in-widget'},
-      (response) => {
-        if (response.status === 'success') {
-          this.oktaAuthService.signInWithRedirect();
-        }
+        scopes: myAppConfig.oidc.scopes,
       },
-      (error) => {
-        throw error; 
-      }
-    ); 
+    });
   }
 
-}
+    ngOnInit() {
+      this.oktaSignin.remove(); // this.oktaSignIn error
+
+      this.oktaSignin.renderEl({ // this.oktaSignIn error
+        el: '#okta-sign-in-widget'},
+        (response: { status: string; }) => {
+          if (response.status === 'SUCCESS') { // 'success' error
+            this.oktaAuthService.signInWithRedirect();
+          }
+        },
+        (error: any) => {
+          throw error;
+        }
+      );
+    }
+
+  }
+
+
