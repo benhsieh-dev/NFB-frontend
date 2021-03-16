@@ -11,10 +11,10 @@ import { ProductCategory } from '../common/product-category';
 export class ProductService {
   // private categoryUrl = 'http://localhost:8080/api/product-category';
   private categoryUrl =
-    'https://newfullybakery.herokuapp.com/api/product-category';
+    'https://newfullybakery-backend.herokuapp.com/api/product-category';
 
   // private baseUrl = 'http://localhost:8080/api/products';
-  private baseUrl = 'https://newfullybakery.herokuapp.com/api/products';
+  private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
 
   constructor(private httpClient: HttpClient) {}
 
