@@ -47,7 +47,6 @@ export class CheckoutComponent implements OnInit {
     this.reviewCartDetails();
 
     this.nfbFormService.getCountries().subscribe((data) => {
-      console.log('Retrieved countries: ' + JSON.stringify(data));
       this.countries = data;
     });
     this.checkoutFormGroup = this.formBuilder.group({
@@ -129,14 +128,11 @@ export class CheckoutComponent implements OnInit {
     });
 
     const startMonth: number = new Date().getMonth() + 1;
-    console.log(startMonth + 1);
     this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
-      console.log('Received credit card months: ' + JSON.stringify(data));
       this.creditCardMonths = data;
     });
 
     this.nfbFormService.getCreditCardYears().subscribe((data) => {
-      console.log('Received credit card years: ' + JSON.stringify(data));
       this.creditCardYears = data;
     });
   }
@@ -151,7 +147,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Handling the submit button');
 
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
@@ -305,7 +300,6 @@ export class CheckoutComponent implements OnInit {
     }
 
     this.nfbFormService.getCreditCardMonths(startMonth).subscribe((data) => {
-      console.log('Retrieved credit card months: ' + JSON.stringify(data));
       this.creditCardMonths = data;
     });
   }
@@ -314,9 +308,6 @@ export class CheckoutComponent implements OnInit {
     const formGroup = this.checkoutFormGroup.get(formGroupName);
     const countryCode = formGroup.value.country.code;
     const countryName = formGroup.value.country.name;
-
-    console.log(`${formGroupName} country code: ${countryCode}`);
-    console.log(`${formGroupName} country name: ${countryName}`);
 
     this.nfbFormService.getStates(countryCode).subscribe((data) => {
       if (formGroupName === 'shippingAddress') {
