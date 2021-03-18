@@ -16,6 +16,8 @@ export class LoginStatusComponent implements OnInit {
     // Subscribe to authentication state changes
     this.oktaAuthService.$authenticationState.subscribe((result) => {
       this.isAuthenticated = result;
+      console.log(`User authentication status: ${this.isAuthenticated}`);
+      console.log(`Username: ${this.userFullName}`);
       this.getUserDetails();
     });
   }
