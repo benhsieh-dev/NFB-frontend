@@ -15,5 +15,7 @@ This is an E-commerce app that allows users to authenticate and add items to sho
 - Java
 - JavaScript
 - TypeScript
+- Bootstrap
 - Heroku hosting
+
 
