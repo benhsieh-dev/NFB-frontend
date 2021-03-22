@@ -1,6 +1,6 @@
 # NfbEcommerce
 
-This is an E-commerce app that allows users to authenticate and add items to shopping cart. 
+This is an E-commerce app that allows users to create account, authenticate, and add/subtract items to/from  shopping cart. 
 
 ## Live Link
 
