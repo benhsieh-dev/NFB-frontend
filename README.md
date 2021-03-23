@@ -18,4 +18,7 @@ This is an E-commerce app that allows users to create account, authenticate, and
 - Bootstrap
 - Heroku hosting
 
+## Notes on Use of Software
+
+Allow Heroku website to warmup when first loading the website
 
