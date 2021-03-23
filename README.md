@@ -20,5 +20,5 @@ This is an E-commerce app that allows users to create account, authenticate, and
 
 ## Notes on Use of Software
 
-Allow Heroku website to warmup when first loading the website
+Allow Heroku website to warmup as it connects to database when first loading the website
 
