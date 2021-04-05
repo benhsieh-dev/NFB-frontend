@@ -1,0 +1,5 @@
+/* remove bullet points from nav bar on product page */
+
+.list-unstyled {
+    list-style: none;
+}
