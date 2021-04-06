@@ -18,14 +18,16 @@ export class NFBFormService {
 
   // Heroku
   // private countriesUrl = `${this.baseUrl}/api/countries`;
-  private countriesUrl = `${this.baseUrl}api/countries`;
+  // private countriesUrl = `${this.baseUrl}api/countries`;
+  private countriesUrl = `https://newfullybakery-backend.herokuapp.com/api/countries`;
 
   // localhost
   // private statesUrl = 'http://localhost:8080/api/states';
 
   // Heroku
   // private statesUrl = `${this.baseUrl}/api/states`;
-  private statesUrl = `${this.baseUrl}api/states`;
+  // private statesUrl = `${this.baseUrl}api/states`;
+  private statesUrl = `https://newfullybakery-backend.herokuapp.com/api/states`;
 
   constructor(private httpClient: HttpClient) {}
 
