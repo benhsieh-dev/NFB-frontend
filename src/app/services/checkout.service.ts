@@ -13,8 +13,11 @@ export class CheckoutService {
   baseUrl = environment.baseUrl; 
 
 
-  // private purchaseUrl = 'http://localhost:8080/api/checkout/purchase';
-  private purchaseUrl = `${this.baseUrl}/api/checkout/purchase`;
+  // localhost
+  private purchaseUrl = 'http://localhost:8080/api/checkout/purchase';
+
+  // Heroku
+  // private purchaseUrl = `${this.baseUrl}/api/checkout/purchase`;
 
   constructor(private httpClient: HttpClient) { }
 

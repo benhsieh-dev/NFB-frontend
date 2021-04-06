@@ -9,12 +9,19 @@ import { ProductCategory } from '../common/product-category';
   providedIn: 'root',
 })
 export class ProductService {
-  // private categoryUrl = 'http://localhost:8080/api/product-category';
-  private categoryUrl =
-    'https://newfullybakery-backend.herokuapp.com/api/product-category';
+  // localhost
+  private categoryUrl = 'http://localhost:8080/api/product-category';
 
-  // private baseUrl = 'http://localhost:8080/api/products';
-  private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
+  // Heroku
+  // private categoryUrl =
+  //   'https://newfullybakery-backend.herokuapp.com/api/product-category';
+
+
+  // localhost
+  private baseUrl = 'http://localhost:8080/api/products';
+
+  // Heroku
+  // private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
 
   constructor(private httpClient: HttpClient) {}
 
