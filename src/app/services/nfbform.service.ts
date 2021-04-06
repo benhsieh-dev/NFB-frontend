@@ -11,20 +11,21 @@ import { State } from '../common/state';
 @Injectable({
   providedIn: 'root',
 })
-
 export class NFBFormService {
   baseUrl = environment.baseUrl;
   // localhost
   // private countriesUrl = 'http://localhost:8080/api/countries';
 
   // Heroku
-  private countriesUrl = `${this.baseUrl}/api/countries`;
+  // private countriesUrl = `${this.baseUrl}/api/countries`;
+  private countriesUrl = `${this.baseUrl}api/countries`;
 
   // localhost
   // private statesUrl = 'http://localhost:8080/api/states';
 
   // Heroku
-  private statesUrl = `${this.baseUrl}/api/states`;
+  // private statesUrl = `${this.baseUrl}/api/states`;
+  private statesUrl = `${this.baseUrl}api/states`;
 
   constructor(private httpClient: HttpClient) {}
 
