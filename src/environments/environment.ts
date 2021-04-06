@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   // localhost
-  baseUrl: 'http://localhost:8080/'
+  // baseUrl: 'http://localhost:8080/'
 
   // Heroku
-  // baseUrl: 'https://newfullybakery-backend.herokuapp.com/',
+  baseUrl: 'https://newfullybakery-backend.herokuapp.com/',
 };
 
 /*
