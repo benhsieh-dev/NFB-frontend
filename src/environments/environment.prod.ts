@@ -1,4 +1,8 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://newfullybakery.herokuapp.com/' 
+  // Heroku NFB frontend URL
+  // baseUrl: 'https://newfullybakery.herokuapp.com/'
+
+  //Heroku NFB backend URL
+  baseUrl: 'https://newfullybakery-backend.herokuapp.com/'
 };

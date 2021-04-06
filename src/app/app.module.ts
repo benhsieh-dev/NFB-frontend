@@ -66,7 +66,7 @@ const routes: Routes = [
     ProductDetailsComponent,
     CartStatusComponent,
     CartDetailsComponent,
-    CheckoutComponent,
+    // CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
     OrderHistoryComponent
