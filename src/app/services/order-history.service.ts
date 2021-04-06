@@ -8,10 +8,10 @@ import { OrderHistory } from '../common/order-history';
 })
 export class OrderHistoryService {
   // localhost
-  private orderUrl = 'http://localhost:8080/api/orders';
+  // private orderUrl = 'http://localhost:8080/api/orders';
 
   // Heroku
-  // private orderUrl = 'https://newfullybakery-backend.herokuapp.com/api/orders';
+  private orderUrl = 'https://newfullybakery-backend.herokuapp.com/api/orders';
 
   constructor(private httpClient: HttpClient) {}
 
