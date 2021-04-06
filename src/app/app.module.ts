@@ -34,13 +34,16 @@ const oktaConfig = Object.assign({
 
 const routes: Routes = [
   {
+    path: 'order-history',
+    component: OrderHistoryComponent,
+    canActivate: [OktaAuthGuard],
+  },
+  {
     path: 'members',
     component: MembersPageComponent,
     canActivate: [OktaAuthGuard],
   },
   // { path: 'login/callback', component: OktaCallbackComponent },
-  {path: 'order-history', component: OrderHistoryComponent, canActivate: [ OktaAuthGuard ]},
-  
   { path: 'login/oauth2/code/okta', component: OktaCallbackComponent },
   { path: 'login', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent },
