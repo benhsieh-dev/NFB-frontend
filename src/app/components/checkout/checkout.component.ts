@@ -35,6 +35,8 @@ export class CheckoutComponent implements OnInit {
 
   countries: Country[] = [];
 
+  storage: Storage = sessionStorage; 
+
   constructor(
     private formBuilder: FormBuilder,
     private nfbFormService: NFBFormService,
@@ -45,6 +47,8 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.reviewCartDetails();
+
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
 
     this.nfbFormService.getCountries().subscribe((data) => {
       this.countries = data;
@@ -61,7 +65,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           NFBValidators.notOnlyWhitespace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(theEmail, [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),
