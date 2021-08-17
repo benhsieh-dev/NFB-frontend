@@ -1,9 +1,21 @@
+import { environment } from "src/environments/environment";
+
+const OktaOidcIssuer = environment.OktaOidcIssuer; 
+const OktaOidcRedirectUri = environment.OktaOidcRedirectUri;
+const OktaClientId = environment.OktaClientId
+
 export default {
+
+  
+
   // localhost Okta credentials
   oidc: {
-    clientId: '0oa9tz60nboljykR05d6',
-    issuer: 'https://dev-46448354.okta.com/oauth2/default',
-    redirectUri: 'http://localhost:4200/login/callback',
+    // clientId: '0oa9tz60nboljykR05d6',
+    clientId: `${OktaClientId}`,
+    // issuer: 'https://dev-46448354.okta.com/oauth2/default',
+    issuer: `${OktaOidcIssuer}`,
+    // redirectUri: 'http://localhost:4200/login/callback',
+    redirectUri: `${OktaOidcRedirectUri}`,
     scopes: ['openid', 'profile', 'email'],
   },
 
