@@ -1,17 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { OrderHistory } from '../common/order-history';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderHistoryService {
+
+  backEndBaseUrl = environment.backEndBaseUrl;
+
   // localhost
   // private orderUrl = 'http://localhost:8080/api/orders';
 
   // Heroku
-  private orderUrl = 'https://newfullybakery-backend.herokuapp.com/api/orders';
+  // private orderUrl = 'https://newfullybakery-backend.herokuapp.com/api/orders';
+  private orderUrl = `${this.backEndBaseUrl}api/orders`;
+
+
 
   constructor(private httpClient: HttpClient) {}
 

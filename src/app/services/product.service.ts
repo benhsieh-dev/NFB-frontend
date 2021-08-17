@@ -4,24 +4,30 @@ import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+
+  backEndBaseUrl = environment.backEndBaseUrl; 
   // localhost
   // private categoryUrl = 'http://localhost:8080/api/product-category';
 
   // Heroku
   private categoryUrl =
-    'https://newfullybakery-backend.herokuapp.com/api/product-category';
+    // 'https://newfullybakery-backend.herokuapp.com/api/product-category';
+    `${this.backEndBaseUrl}/api/product-category`;
 
 
   // localhost
   // private baseUrl = 'http://localhost:8080/api/products';
 
   // Heroku
-  private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
+  // private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
+
+  private baseUrl = `${this.backEndBaseUrl}/api/products`;
 
   constructor(private httpClient: HttpClient) {}
 

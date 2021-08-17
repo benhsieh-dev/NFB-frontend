@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { EnvService } from './services/env.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private environment: EnvService){}
   title = 'nfb-ecommerce';
+  backEndBaseUrl = this.environment.backEndBaseUrl; 
 }

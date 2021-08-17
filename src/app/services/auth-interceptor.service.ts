@@ -18,6 +18,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     // localhost
     const securedEnpoints = ['http://localhost:8080/api/orders'];
 
+
     if (securedEnpoints.some(url => request.urlWithParams.includes(url))) {
       const accessToken = await this.oktaAuth.getAccessToken();
       

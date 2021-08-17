@@ -24,6 +24,7 @@ import { MembersPageComponent } from './components/members-page/members-page.com
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { Order } from './common/order';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { EnvServiceProvider } from './services/env.service.provider';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -82,7 +83,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig},
+  providers: [EnvServiceProvider, ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
