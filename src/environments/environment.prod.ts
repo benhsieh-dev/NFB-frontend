@@ -6,9 +6,6 @@ export const environment = {
   //Heroku NFB backend URL
   backEndBaseUrl: 'https://newfullybakery-backend.herokuapp.com',
 
-  // hostURL: 'https://newfullybakery-backend.herokuapp.com',
-  // envName: 'prod'
-
   // Okta
   OktaClientId: '0oac1kw4vZ9vG4i0m5d6',
   OktaOidcIssuer: 'https://dev-6013813.okta.com/oauth2/default', 

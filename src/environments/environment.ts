@@ -8,11 +8,7 @@ export const environment = {
   backEndBaseUrl: 'http://localhost:8080', 
 
   // Heroku
-  // baseUrl: 'https://newfullybakery-backend.herokuapp.com',
-
-  // hostURL: 'http://localhost',
-  // port: 4200,
-  // envName: 'local'
+  // backEndBaseUrl: 'https://newfullybakery-backend.herokuapp.com',
 
   // Okta
   OktaClientId: '0oa9tz60nboljykR05d6',

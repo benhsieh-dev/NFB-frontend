@@ -11,15 +11,16 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
-  backEndBaseUrl = environment.backEndBaseUrl; 
+  // backEndBaseUrl = environment.backEndBaseUrl; 
   // localhost
   // private categoryUrl = 'http://localhost:8080/api/product-category';
 
   // Heroku
-  private categoryUrl =
-    // 'https://newfullybakery-backend.herokuapp.com/api/product-category';
-    `${this.backEndBaseUrl}/api/product-category`;
+  // private categoryUrl =
+  //   // 'https://newfullybakery-backend.herokuapp.com/api/product-category';
+  //   `${this.backEndBaseUrl}/api/product-category`;
 
+  private categoryUrl = environment.backEndBaseUrl + '/api/product-category'; 
 
   // localhost
   // private baseUrl = 'http://localhost:8080/api/products';
@@ -27,7 +28,8 @@ export class ProductService {
   // Heroku
   // private baseUrl = 'https://newfullybakery-backend.herokuapp.com/api/products';
 
-  private baseUrl = `${this.backEndBaseUrl}/api/products`;
+  // private baseUrl = `${this.backEndBaseUrl}/api/products`;
+  private baseUrl = environment.backEndBaseUrl + '/api/products';
 
   constructor(private httpClient: HttpClient) {}
 
