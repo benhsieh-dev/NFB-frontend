@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,6 @@ import { OKTA_CONFIG, OktaAuthModule, OktaCallbackComponent, OktaAuthGuard } fro
 import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { Order } from './common/order';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { EnvServiceProvider } from './services/env.service.provider';
 
