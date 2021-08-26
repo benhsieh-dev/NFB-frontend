@@ -7,10 +7,7 @@ export const environment = {
   // localhost
   backEndBaseUrl: 'http://localhost:8080', 
 
-  // Heroku
-  // backEndBaseUrl: 'https://newfullybakery-backend.herokuapp.com',
-
-  // Okta
+  // localhost Okta configurations
   OktaClientId: '0oa9tz60nboljykR05d6',
   OktaOidcIssuer: 'https://dev-46448354.okta.com/oauth2/default', 
   OktaOidcRedirectUri: 'http://localhost:4200/login/callback'
