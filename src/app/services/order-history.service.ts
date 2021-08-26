@@ -10,12 +10,8 @@ import { OrderHistory } from '../common/order-history';
 export class OrderHistoryService {
 
   backEndBaseUrl = environment.backEndBaseUrl;
-
-  // localhost
-  // private orderUrl = 'http://localhost:8080/api/orders';
-
-  // Heroku
-  // private orderUrl = 'https://newfullybakery-backend.herokuapp.com/api/orders';
+  
+  // Dynamic environment configuration variables in Heroku and localhost
   private orderUrl = `${this.backEndBaseUrl}api/orders`;
 
 
