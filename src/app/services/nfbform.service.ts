@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-// import { environment } from 'src/environments/environment.prod';
 import { Country } from '../common/country';
 import { State } from '../common/state';
 
@@ -12,23 +11,14 @@ import { State } from '../common/state';
   providedIn: 'root',
 })
 export class NFBFormService {
+
+  // Dynamic environment configuration variables in Heroku and localhost
   backEndBaseUrl = environment.backEndBaseUrl;
-  // localhost
-  // private countriesUrl = 'http://localhost:8080/api/countries';
 
-  // Heroku
-  // private countriesUrl = `${this.baseUrl}/api/countries`;
   private countriesUrl = `${this.backEndBaseUrl}/api/countries`;
-  // private countriesUrl = `https://newfullybakery-backend.herokuapp.com/api/countries`;
-
-  // localhost
-  // private statesUrl = 'http://localhost:8080/api/states';
-
-  // Heroku
-  // private statesUrl = `${this.baseUrl}/api/states`;
+  
   private statesUrl = `${this.backEndBaseUrl}/api/states`;
-  // private statesUrl = `https://newfullybakery-backend.herokuapp.com/api/states`;
-
+  
   constructor(private httpClient: HttpClient) {}
 
   getCountries(): Observable<Country[]> {
