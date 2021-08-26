@@ -19,9 +19,8 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
   
   private async handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
-    // localhost
-    // const securedEnpoints = ['http://localhost:8080/api/orders'];
-    // const securedEnpoints = [`${this.backEndBaseUrl}/api/orders`];
+
+    // dynamic configuration variables in Heroku and localhost 
     const securedEnpoints = [environment.backEndBaseUrl + '/api/orders'];
 
 
