@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-// import { environment } from 'src/environments/environment.prod'; 
 import { Purchase } from '../common/purchase';
 
 @Injectable({
@@ -12,14 +11,8 @@ export class CheckoutService {
 
   backEndBaseUrl = environment.backEndBaseUrl; 
 
-
-  // localhost
-  // private purchaseUrl = 'http://localhost:8080/api/checkout/purchase';
+  // Dynamic environment configuration variables in Heroku and localhost
   private purchaseUrl = `${this.backEndBaseUrl}/api/checkout/purchase`;
-
-  // Heroku
-  // private purchaseUrl = `${this.baseUrl}/api/checkout/purchase`;
-  
 
   constructor(private httpClient: HttpClient) { }
 
