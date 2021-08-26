@@ -11,7 +11,7 @@ export class OrderHistoryService {
 
   backEndBaseUrl = environment.backEndBaseUrl;
   
-  // Dynamic environment configuration variables in Heroku and localhost
+  // dynamic environment variables for localhost and Heroku 
   private orderUrl = `${this.backEndBaseUrl}api/orders`;
 
 

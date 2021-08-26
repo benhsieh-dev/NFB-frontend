@@ -12,7 +12,7 @@ import { State } from '../common/state';
 })
 export class NFBFormService {
 
-  // Dynamic environment configuration variables in Heroku and localhost
+  // dynamic environment variables for localhost and Heroku 
   backEndBaseUrl = environment.backEndBaseUrl;
 
   private countriesUrl = `${this.backEndBaseUrl}/api/countries`;

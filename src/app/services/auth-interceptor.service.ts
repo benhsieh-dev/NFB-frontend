@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  // added this
+  // dynamic environment variable for localhost and Heroku 
   backEndBaseUrl = environment.backEndBaseUrl; 
 
   constructor(private oktaAuth: OktaAuthService) { }
@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   
   private async handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
 
-    // dynamic configuration variables in Heroku and localhost 
+   
     const securedEnpoints = [environment.backEndBaseUrl + '/api/orders'];
 
 

@@ -11,7 +11,7 @@ export class CheckoutService {
 
   backEndBaseUrl = environment.backEndBaseUrl; 
 
-  // Dynamic environment configuration variables in Heroku and localhost
+  // dynamic environment variables for localhost and Heroku 
   private purchaseUrl = `${this.backEndBaseUrl}/api/checkout/purchase`;
 
   constructor(private httpClient: HttpClient) { }
