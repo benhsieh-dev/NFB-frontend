@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { MembersPageComponent } from './components/members-page/members-page.com
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { EnvServiceProvider } from './services/env.service.provider';
+import { OktaAuth } from '@okta/okta-auth-js'; 
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -33,16 +34,26 @@ const oktaConfig = Object.assign({
   }
 }, myAppConfig.oidc);
 
+const oktaAuth = new OktaAuth(oktaConfig); 
+
+function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector) {
+  const router = injector.get(Router); 
+  router.navigate(['/login']); 
+}
+
+
 const routes: Routes = [
   {
     path: 'order-history',
     component: OrderHistoryComponent,
     canActivate: [OktaAuthGuard],
+    data: { onAuthRequired: sendToLoginPage },
   },
   {
     path: 'members',
     component: MembersPageComponent,
     canActivate: [OktaAuthGuard],
+    data: { onAuthRequired: sendToLoginPage },
   },
   // { path: 'login/callback', component: OktaCallbackComponent },
   { path: 'login/oauth2/code/okta', component: OktaCallbackComponent },
