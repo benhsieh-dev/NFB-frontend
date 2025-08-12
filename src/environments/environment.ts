@@ -8,9 +8,9 @@ export const environment = {
   backEndBaseUrl: 'http://localhost:8080', 
 
   // localhost Okta configurations
-  OktaClientId: '0oa9tz60nboljykR05d6',
-  OktaOidcIssuer: 'https://dev-46448354.okta.com/oauth2/default', 
-  OktaOidcRedirectUri: 'http://localhost:4200/login/callback'
+  OktaClientId: '0oaq13eomldKHMZgO5d7',
+  OktaOidcIssuer: 'https://dev-70662309.okta.com/oauth2/default', 
+  OktaOidcRedirectUri: 'http://localhost:4200/login/oauth2/code/okta'
 };
 
 /*

@@ -45,6 +45,34 @@ export class LoginComponent implements OnInit {
       );
     }
 
+  loginDemoUser() {
+    // Auto-fill demo credentials and submit the form
+    setTimeout(() => {
+      const usernameField = document.querySelector('[name="username"]') as HTMLInputElement;
+      const passwordField = document.querySelector('[name="password"]') as HTMLInputElement;
+      const submitButton = document.querySelector('[type="submit"]') as HTMLButtonElement;
+      
+      if (usernameField && passwordField && submitButton) {
+        // Fill in the demo credentials
+        usernameField.value = 'bqh5026@gmail.com';
+        passwordField.value = 'OktaTesting123';
+        
+        // Trigger input events to ensure Okta widget recognizes the values
+        usernameField.dispatchEvent(new Event('input', { bubbles: true }));
+        passwordField.dispatchEvent(new Event('input', { bubbles: true }));
+        usernameField.dispatchEvent(new Event('change', { bubbles: true }));
+        passwordField.dispatchEvent(new Event('change', { bubbles: true }));
+        
+        // Auto-submit the form after a brief delay
+        setTimeout(() => {
+          submitButton.click();
+        }, 100);
+      } else {
+        alert('Login form not ready. Please wait a moment and try again.');
+      }
+    }, 500);
+  }
+
   }
 
 

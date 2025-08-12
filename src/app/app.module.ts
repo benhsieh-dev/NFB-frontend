@@ -55,7 +55,7 @@ const routes: Routes = [
     canActivate: [OktaAuthGuard],
     data: { onAuthRequired: sendToLoginPage },
   },
-  // { path: 'login/callback', component: OktaCallbackComponent },
+  { path: 'callback', component: OktaCallbackComponent },
   { path: 'login/oauth2/code/okta', component: OktaCallbackComponent },
   { path: 'login', component: LoginComponent },
   { path: 'checkout', component: CheckoutComponent },
